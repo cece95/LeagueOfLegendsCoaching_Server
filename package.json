@@ -1,0 +1,27 @@
+{
+  "name": "league-of-legends-coaching",
+  "version": "1.0.0",
+  "description": "app server",
+  "main": "start.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "fcm-node": "^1.2.0",
+    "firebase": "^4.0.0",
+    "firebase-token-generator": "^2.0.0",
+    "mysql": "^2.13.0",
+    "requestify": "^0.2.5",
+    "wait.for-es6": "^0.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/league-of-legends-coaching.git"
+  },
+  "author": "cesare_grigoletto luca_bazzanella",
+  "license": "ISC"
+}
