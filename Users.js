@@ -8,7 +8,7 @@ var firebase = require("firebase");
 var FCM = require("fcm-node");
 
 var config = {
-    apiKey: "AAAAmkyxv50:APA91bHW7nU98igv2hOa4ykspIJhU-Vx6B_LhuEHr_tLBchTuMKDnP6ErraYxn9uhsRu3JvE38qGGYGbKFUkMm-kPaKYEp7Mr0vbxgwd_GBWiinZYKziUN2CeiN-V8glmPQkjYmp_4eC",
+    apiKey: "MY_API_KEY",
     authDomain: "leagueoflegendscoaching-2645c.firebaseapp.com",
     databaseURL: "https://leagueoflegendscoaching-2645c.firebaseio.com",
     projectId: "leagueoflegendscoaching-2645c",
@@ -19,8 +19,8 @@ firebase.initializeApp(config);
 
 var fcm = new FCM(config.apiKey);
 
-var email = "cesaregri@gmail.com";
-var password = "firebase1948";
+var email = "MY_EMAIL";
+var password = "MY_PASSWORD";
 
 firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
   var errorCode = error.code;
