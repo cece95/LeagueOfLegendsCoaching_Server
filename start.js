@@ -15,40 +15,6 @@ app.use('/users', UserRouter);
 app.use('/coaches', CoachRouter);
 app.use('/reservations', ReservationRouter);
 
-app.post('/getSchedule', function(request, response){
-
-  response.setHeader("Access-Control-Allow-Origin", "*");
-  response.setHeader("Content-Type", "application/json");
-
-  var coach = request.body.user;
-
-  Users.getReservations(coach, response);
-
-});
-
-app.post('/saveReservation', function(request, response){
-
-  response.setHeader("Access-Control-Allow-Origin", "*");
-  response.setHeader("Content-Type", "application/json");
-
-  var student = request.body.student;
-  var coach = { 
-    name: request.body.coach,
-    role1: request.body.role1,
-    role2: request.body.role2,
-    cost: request.body.cost
-  }
-
-  var schedule = {
-    date: request.body.date,
-    array: request.body.schedule,
-    start: request.body.start,
-    end: request.body.end
-  }
-
-  Users.reserve(schedule, coach, student, response);  
-});
-
 app.post('/getUserReservation', function(request, response){
   response.setHeader("Access-Control-Allow-Origin", "*");
   response.setHeader("Content-Type", "application/json");
