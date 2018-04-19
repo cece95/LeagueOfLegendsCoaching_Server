@@ -3,122 +3,17 @@ var express = require('express');
 var app = express();
 
 //body parser
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
+app.use(express.json());
 
 //require Users
 var Users = require("./Users.js");
+var UserRouter = require('./routes/userRouter');
+var CoachRouter = require('./routes/coachRouter');
+var ReservationRouter = require('./routes/reservationRouter')
 
-app.post('/userRegistration', function (request, response) {
-
-  response.setHeader("Access-Control-Allow-Origin", "*")
-  response.setHeader("Content-Type", "application/json");    
-  
-  console.log("Register POST");
-
-	var ign = request.body.ign;  
-	var password = request.body.password;
-  
-  var user = {
-    ign: ign,
-    password: password,
-    isCoach: false
-  };
-
-  Users.registerUser(user, response);  
-
-});
-
-app.post('/userLogin', function (request, response) {
-
-  response.setHeader("Access-Control-Allow-Origin", "*");
-  response.setHeader("Content-Type", "application/json");    
-  
-  console.log("Login POST");
-
-  var ign = request.body.ign;  
-  var password = request.body.password;
-  
-  Users.loginUser(ign, password, response);  
-
-});
-
-app.post('/saveToken', function(request, response){
-  response.setHeader("Access-Control-Allow-Origin", "*");
-  response.setHeader("Content-Type", "application/json");    
-  
-  console.log("Save Token");
-
-  var ign = request.body.ign;  
-  var token = request.body.token;
-  
-  Users.saveToken(ign, token, response);  
-});
-
-app.post('/coachRegistration', function(request, response){
-  
-  response.setHeader("Access-Control-Allow-Origin", "*");
-  response.setHeader("Content-Type", "application/json"); 
-
-  console.log("Coach Register");
-
-  var coach = {
-    ign: request.body.ign,  
-    password: request.body.password,
-    isCoach: true,
-    elo: request.body.elo,
-    languages: request.body.languages,
-    role1: request.body.role1,
-    role2: request.body.role2,
-    cost: request.body.cost,
-    upgrade: request.body.upgrade,
-    schedule: request.body.schedule
-  };
-  
-
-  Users.registerCoach(coach, response);
-
-});
-
-app.post('/updateInfo', function(request, response){
-
-  response.setHeader("Access-Control-Allow-Origin", "*");
-  response.setHeader("Content-Type", "application/json");
-
-  var coach = {
-    ign: request.body.ign,  
-    password: request.body.password,
-    isCoach: true,
-    elo: request.body.elo,
-    languages: request.body.languages,
-    role1: request.body.role1,
-    role2: request.body.role2,
-    cost: request.body.cost,
-    upgrade: request.body.upgrade,
-    schedule: request.body.schedule
-  };
-
-  Users.updateInfo(coach, response);
-});
-
-app.post('/searchCoach', function(request, response){
-
-  response.setHeader("Access-Control-Allow-Origin", "*");
-  response.setHeader("Content-Type", "application/json");   
-
-  var searchParams = {
-    nameCoach: request.body.nameCoach,
-    elo: request.body.elo,
-    role: request.body.role,
-    idChampion1: request.body.idChampion1,
-    idChampion2: request.body.idChampion2,
-    idChampion3: request.body.idChampion3,
-    cost: request.body.cost,
-    languages: request.body.languages,
-  }
-
-  Users.searchCoach(searchParams, response);
-});
+app.use('/users', UserRouter);
+app.use('/coaches', CoachRouter);
+app.use('/reservations', ReservationRouter);
 
 app.post('/getSchedule', function(request, response){
 

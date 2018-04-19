@@ -8,13 +8,13 @@ var firebase = require("firebase");
 var FCM = require("fcm-node");
 
 var config = {
-    apiKey: "MY_API_KEY",
-    authDomain: "leagueoflegendscoaching-2645c.firebaseapp.com",
-    databaseURL: "https://leagueoflegendscoaching-2645c.firebaseio.com",
-    projectId: "leagueoflegendscoaching-2645c",
-    storageBucket: "leagueoflegendscoaching-2645c.appspot.com",
-    messagingSenderId: "662711680925"
-  };
+  apiKey: "MY_API_KEY",
+  authDomain: "leagueoflegendscoaching-2645c.firebaseapp.com",
+  databaseURL: "https://leagueoflegendscoaching-2645c.firebaseio.com",
+  projectId: "leagueoflegendscoaching-2645c",
+  storageBucket: "leagueoflegendscoaching-2645c.appspot.com",
+  messagingSenderId: "662711680925"
+};
 firebase.initializeApp(config);
 
 var fcm = new FCM(config.apiKey);
