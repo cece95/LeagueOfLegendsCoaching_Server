@@ -4,7 +4,7 @@ var functions = require("../Functions.js")
 //require ids
 const ids = require('./id');
 const config = require('./config');
-const requestify = require('requestify'); 
+const axios = require('axios')
 const deferred = require('deferred');
 
 exports.checkSummoner = (user) => {
@@ -12,7 +12,7 @@ exports.checkSummoner = (user) => {
 	var summoner = user ? String(user.ign): "";
     var url = config.base_url+"summoner/v3/summoners/by-name/"+summoner+"?api_key="+config.key;
 	console.log("url: ", url);
-	requestify.get(url).then(function(response){
+	axios.get(url).then(function(response){
 		var code = response.getCode();
 		if (code == "200"){
 			var body = response.getBody();
@@ -42,7 +42,7 @@ exports.refreshChampions = (user) => {
 	var deferred_refresh = deferred();
 	var summoner = String(user);
 	var url = base_url+"summoner/v3/summoners/by-name/"+summoner+"?api_key="+key;
-	requestify.get(url).then(response => {
+	axios.get(url).then(response => {
 		var code = response.getCode();
 		if (code == "200"){
 			var body = response.getBody();
@@ -54,7 +54,7 @@ exports.refreshChampions = (user) => {
 				champions[id] = 0
 			});
 			
-			requestify.get(url).then(res => {
+			axios.get(url).then(res => {
 				var page = res.getBody()
 				var matches = page['matches'];
 
@@ -82,7 +82,7 @@ const mostplayedChamps = (accountId, user) => {
 	ids.forEach(function(id){
 		champions[id] = 0
 	});
-    requestify.get(url)
+    axios.get(url)
     .then((response) => {
 		console.log("matches request");
 		var page = response.getBody()
